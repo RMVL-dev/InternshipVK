@@ -14,7 +14,8 @@ class CatalogItemViewHolder(private val view: ProductViewHolderBinding):Recycler
     fun bind(product: Product) = with(view){
         this.tvProductItemTitle.text = product.title
         this.tvProductItemSubtitle.text = product.brand
-        this.tvDiscountItemPerc.text = "${product.discount}%"
+        this.tvDiscountItemPerc.text = "-${product.discount}%"
+        this.tvProductItemPrice.text = "${product.price} $"
         Glide.with(this.ivProductItemPreview)
             .load(product.thumbnailUrl)
             .centerCrop()

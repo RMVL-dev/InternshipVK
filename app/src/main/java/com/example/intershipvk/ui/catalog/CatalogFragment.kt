@@ -1,6 +1,7 @@
 package com.example.intershipvk.ui.catalog
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,9 @@ class CatalogFragment : Fragment() {
     private val binding
         get() = _binding!!
 
+    private var offset = 0
+    private var totalProducts = 0
+
     private val viewModel:CatalogViewModel by createViewModelLazy(
         CatalogViewModel::class,
         { this.viewModelStore },
@@ -35,7 +39,8 @@ class CatalogFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.getProducts(offset = 0, countPetPage = 20)
+        viewModel.getProducts(offset = offset, countPetPage = countPerPage)
+        prepareClickListeners()
         viewModel.productLiveData.observe(viewLifecycleOwner){response ->
             when(response){
                 is ResponseState.Error -> {
@@ -46,20 +51,65 @@ class CatalogFragment : Fragment() {
                 }
                 is ResponseState.Success -> {
                     prepareCatalog(response.data.products)
+                    totalProducts = response.data.total
                 }
             }
         }
     }
 
+    /**
+     * Опеределение адаптера для recycler view
+     */
     private fun prepareCatalog(data:List<Product>) {
         val adapter = CatalogAdapter(data = data)
-
         binding.rvProductCatalog.adapter = adapter
+        binding.tvPageNumber.text = "${(offset/ countPerPage)+1}"
+    }
+
+    /**
+     * определение клик литенеров
+     */
+    private fun prepareClickListeners(){
+
+        /* Пангинацию можно было и лучше сделать, но в задаче не
+         * сказано какую сделать пангинацию, поэтому сделал самую простую :)
+         */
+        binding.ibBackPage.setOnClickListener {
+            if (offset - countPerPage >= 0) {
+                offset -= countPerPage
+                viewModel.getProducts(
+                    offset = offset,
+                    countPetPage = countPerPage
+                )
+                binding.rvProductCatalog.smoothScrollToPosition(0)
+            }else{
+                //тут было бы лучше видно, еслиб я шарил в дизайне :)
+                binding.ibBackPage.isEnabled = false
+            }
+        }
+
+        binding.ibForwardPage.setOnClickListener {
+            if (offset+ countPerPage < totalProducts) {
+                offset += countPerPage
+                viewModel.getProducts(
+                    offset = offset,
+                    countPetPage = countPerPage
+                )
+                binding.rvProductCatalog.smoothScrollToPosition(0)
+            }else{
+                //тут было бы лучше видно, еслиб я шарил в дизайне :)
+                binding.ibForwardPage.isEnabled = false
+            }
+        }
     }
 
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
+    }
+
+    companion object {
+        private const val countPerPage = 20
     }
 
 
