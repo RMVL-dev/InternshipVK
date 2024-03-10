@@ -10,6 +10,7 @@ import androidx.fragment.app.createViewModelLazy
 import androidx.navigation.fragment.findNavController
 import com.example.intershipvk.data.Product
 import com.example.intershipvk.databinding.FragmentCatalogBinding
+import com.example.intershipvk.toJson
 import com.example.intershipvk.ui.ResponseState
 import com.example.intershipvk.ui.catalog.rv.CatalogAdapter
 import com.example.intershipvk.ui.provider.ProductsViewModelProvider
@@ -68,7 +69,7 @@ class CatalogFragment : Fragment() {
             val gson by lazy { Gson() }
             findNavController().navigate(
                 CatalogFragmentDirections.actionCatalogFragmentToProductItemFragment(
-                    gson.toJson(data[position])
+                    toJson(data[position])
                 )
             )
         }
