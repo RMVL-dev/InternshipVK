@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.createViewModelLazy
+import androidx.navigation.fragment.findNavController
 import com.example.intershipvk.data.Product
 import com.example.intershipvk.databinding.FragmentCatalogBinding
 import com.example.intershipvk.ui.ResponseState
 import com.example.intershipvk.ui.catalog.rv.CatalogAdapter
 import com.example.intershipvk.ui.provider.ProductsViewModelProvider
+import com.google.gson.Gson
 
 
 class CatalogFragment : Fragment() {
@@ -62,6 +64,14 @@ class CatalogFragment : Fragment() {
      */
     private fun prepareCatalog(data:List<Product>) {
         val adapter = CatalogAdapter(data = data)
+        adapter.onCardClick = {position ->
+            val gson by lazy { Gson() }
+            findNavController().navigate(
+                CatalogFragmentDirections.actionCatalogFragmentToProductItemFragment(
+                    gson.toJson(data[position])
+                )
+            )
+        }
         binding.rvProductCatalog.adapter = adapter
         binding.tvPageNumber.text = "${(offset/ countPerPage)+1}"
     }

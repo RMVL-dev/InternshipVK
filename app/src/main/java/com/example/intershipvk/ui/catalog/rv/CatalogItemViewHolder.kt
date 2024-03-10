@@ -11,11 +11,17 @@ class CatalogItemViewHolder(private val view: ProductViewHolderBinding):Recycler
 
 
     @SuppressLint("SetTextI18n")
-    fun bind(product: Product) = with(view){
+    fun bind(
+        product: Product,
+        onClick:() -> Unit
+    ) = with(view){
         this.tvProductItemTitle.text = product.title
         this.tvProductItemSubtitle.text = product.brand
         this.tvDiscountItemPerc.text = "-${product.discount}%"
         this.tvProductItemPrice.text = "${product.price} $"
+        this.cvProductItemContainer.setOnClickListener {
+            onClick()
+        }
         Glide.with(this.ivProductItemPreview)
             .load(product.thumbnailUrl)
             .centerCrop()

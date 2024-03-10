@@ -18,5 +18,9 @@
         android:id="@+id/productItemFragment"
         android:name="com.example.intershipvk.ui.product.ProductItemFragment"
         android:label="fragment_product_item"
-        tools:layout="@layout/fragment_product_item" />
+        tools:layout="@layout/fragment_product_item" >
+        <argument
+            android:name="product"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -9,6 +9,8 @@ import com.example.intershipvk.databinding.ProductViewHolderBinding
 class CatalogAdapter(
     private val data:List<Product>
 ):RecyclerView.Adapter<CatalogItemViewHolder>() {
+
+    var onCardClick:(Int) -> Unit = {}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogItemViewHolder =
         CatalogItemViewHolder(
             view = ProductViewHolderBinding.inflate(LayoutInflater.from(parent.context),parent, false)
@@ -18,6 +20,8 @@ class CatalogAdapter(
         data.size
 
     override fun onBindViewHolder(holder: CatalogItemViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(
+            data[position]
+        ) { onCardClick(position) }
     }
 }
