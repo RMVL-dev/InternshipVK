@@ -32,4 +32,22 @@ class CatalogViewModel(private val repository: ProductsRepository):ViewModel() {
         }
     }
 
+    fun getSearchResult(
+        query: String
+    ){
+        _productLiveData.postValue(ResponseState.Loading())
+        viewModelScope.launch {
+            _productLiveData.postValue(
+                try {
+                    ResponseState.Success(
+                        repository.getSearchResults(query)
+                    )
+                }catch (e:Exception){
+                    e.printStackTrace()
+                    ResponseState.Error()
+                }
+            )
+        }
+    }
+
 }

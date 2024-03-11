@@ -1,7 +1,6 @@
 package com.example.intershipvk.ui.catalog
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import com.example.intershipvk.toJson
 import com.example.intershipvk.ui.ResponseState
 import com.example.intershipvk.ui.catalog.rv.CatalogAdapter
 import com.example.intershipvk.ui.provider.ProductsViewModelProvider
-import com.google.gson.Gson
 
 
 class CatalogFragment : Fragment() {
@@ -66,7 +64,6 @@ class CatalogFragment : Fragment() {
     private fun prepareCatalog(data:List<Product>) {
         val adapter = CatalogAdapter(data = data)
         adapter.onCardClick = {position ->
-            val gson by lazy { Gson() }
             findNavController().navigate(
                 CatalogFragmentDirections.actionCatalogFragmentToProductItemFragment(
                     toJson(data[position])
@@ -78,7 +75,7 @@ class CatalogFragment : Fragment() {
     }
 
     /**
-     * определение клик литенеров
+     * определение клик листенеров
      */
     private fun prepareClickListeners(){
 
@@ -111,6 +108,12 @@ class CatalogFragment : Fragment() {
                 //тут было бы лучше видно, еслиб я шарил в дизайне :)
                 binding.ibForwardPage.isEnabled = false
             }
+        }
+
+        binding.btSearch.setOnClickListener {
+            viewModel.getSearchResult(
+                binding.etSearch.text.toString()
+            )
         }
     }
 

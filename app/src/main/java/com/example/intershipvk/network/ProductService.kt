@@ -12,5 +12,9 @@ interface ProductService {
         @Query("limit") limit:Int
     ):Response
 
+    @GET("/products/search")
+    suspend fun getSearchResult(
+        @Query("q") query:String
+    ):Response
 
 }

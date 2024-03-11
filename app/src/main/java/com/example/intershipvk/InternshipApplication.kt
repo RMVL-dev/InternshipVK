@@ -14,5 +14,4 @@ class InternshipApplication:Application() {
         productsContainer = ProductsContainerImpl()
     }
 
-
 }

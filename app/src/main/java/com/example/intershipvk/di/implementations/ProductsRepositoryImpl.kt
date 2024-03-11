@@ -9,4 +9,7 @@ class ProductsRepositoryImpl(
 ): ProductsRepository {
     override suspend fun getProducts(offset: Int, limit: Int): Response =
         api.getProductList(offset = offset, limit = limit)
+
+    override suspend fun getSearchResults(search: String): Response =
+        api.getSearchResult(query = search)
 }

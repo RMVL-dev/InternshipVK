@@ -1,18 +1,15 @@
 package com.example.intershipvk.ui.product
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.intershipvk.R
-import com.example.intershipvk.data.Product
 import com.example.intershipvk.databinding.FragmentProductItemBinding
 import com.example.intershipvk.fromJson
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.example.intershipvk.ui.product.adapter.ViewPagerAdapter
 
 class ProductItemFragment : Fragment() {
 
@@ -20,16 +17,14 @@ class ProductItemFragment : Fragment() {
     private val binding: FragmentProductItemBinding
         get() = _binding!!
 
+    //получение продукта из safe args в виде строки
     private val args:ProductItemFragmentArgs by navArgs()
-
-    private val gson by lazy { Gson() }
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentProductItemBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -38,7 +33,18 @@ class ProductItemFragment : Fragment() {
 
         val product = fromJson(args.product)
 
-        binding.test.text = product.toString()
+        product?.let {
+            binding.mt.title = it.title
+            binding.mt.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+            binding.vpPreview.adapter = ViewPagerAdapter(it.images)
+            binding.tvProductSecondScreenTitle.text = it.title
+            binding.tvProductSecondScreenPrice.text = "${it.price} $"
+            binding.tvProductSecondScreenDescr.text = it.description
+        }
+
+
     }
 
 

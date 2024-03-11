@@ -6,4 +6,6 @@ interface ProductsRepository {
 
     suspend fun getProducts(offset:Int, limit:Int):Response
 
+    suspend fun getSearchResults(search:String):Response
+
 }

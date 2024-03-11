@@ -3,14 +3,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.product.ProductItemFragment">
 
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/mt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:navigationIcon="@drawable/baseline_arrow_back_24"
+        android:background="@color/paging_color"
+        app:titleTextColor="@color/white"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_preview"
+        android:layout_width="0dp"
+        android:layout_height="284dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mt"
+        />
+
     <TextView
-        android:id="@+id/test"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:id="@+id/tv_product_second_screen_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        tools:text = "Macbook pro"
+        android:padding="@dimen/padding_sec_screen_8dp"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+
+        app:layout_constraintTop_toBottomOf="@+id/vp_preview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 
+    <TextView
+        android:id="@+id/tv_product_second_screen_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:padding="@dimen/padding_sec_screen_8dp"
+        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+        tools:text = "1500$"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_second_screen_title"/>
+
+    <TextView
+        android:id="@+id/tv_product_second_screen_descr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:padding="@dimen/padding_sec_screen_8dp"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        tools:text = "some descriptionText"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_second_screen_price"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

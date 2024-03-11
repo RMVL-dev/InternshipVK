@@ -6,6 +6,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.catalog.CatalogFragment">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:paddingStart="@dimen/first_screen_10dp"
+        android:paddingEnd="@dimen/first_screen_5dp"
+        app:layout_constraintHorizontal_weight="3"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bt_search"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rv_product_catalog"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:hint="@string/search"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_search"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:paddingEnd="@dimen/first_screen_10dp"
+        android:paddingStart="@dimen/first_screen_5dp"
+        android:layout_marginTop="@dimen/first_screen_5dp"
+        android:layout_marginBottom="@dimen/first_screen_5dp"
+        android:layout_marginEnd="@dimen/first_screen_10dp"
+
+        android:text="@string/search"
+        android:backgroundTint="@color/paging_color"
+        android:textAllCaps="true"
+        app:layout_constraintHorizontal_weight="1"
+
+        app:layout_constraintStart_toEndOf="@id/til_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/til_search"
+        app:layout_constraintBottom_toBottomOf="@id/til_search"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_product_catalog"
         android:layout_width="0dp"
@@ -16,7 +64,7 @@
 
         tools:listitem="@layout/product_view_holder"
 
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_search"
         app:layout_constraintBottom_toTopOf="@+id/rl_bottom_paging"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +74,7 @@
         android:id="@+id/rl_bottom_paging"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="@dimen/first_screen_10dp"
         android:background="@drawable/bottom_paging_shape"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="25sp"
+            android:textSize="@dimen/first_screen_text_size_25sp"
             android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:layout_alignTop="@+id/ib_back_page"

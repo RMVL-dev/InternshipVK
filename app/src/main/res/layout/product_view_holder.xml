@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="@dimen/rv_image_width"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="@dimen/first_screen_10dp"
 
-    android:layout_margin="10dp"
-    app:cardElevation="3dp"
+    android:layout_margin="@dimen/first_screen_10dp"
+    app:cardElevation="@dimen/rv_card_elevation"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,10 +19,10 @@
         <ImageView
             android:id="@+id/iv_product_item_preview"
             android:layout_width="wrap_content"
-            android:layout_height="170dp"
+            android:layout_height="@dimen/rv_image_height"
 
-            android:maxWidth="170dp"
-            android:maxHeight="250dp"
+            android:maxWidth="@dimen/rv_image_height"
+            android:maxHeight="@dimen/rv_image_width"
 
             android:src="@drawable/ic_launcher_background"
 
@@ -37,14 +37,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/dicount_shape"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingTop="@dimen/first_screen_5dp"
+            android:paddingBottom="@dimen/first_screen_5dp"
+            android:paddingStart="@dimen/first_screen_10dp"
+            android:paddingEnd="@dimen/first_screen_10dp"
 
             tools:text = "12,96%"
-            android:layout_marginBottom="5dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginBottom="@dimen/first_screen_5dp"
+            android:layout_marginStart="@dimen/first_screen_5dp"
 
             app:layout_constraintBottom_toBottomOf="@+id/iv_product_item_preview"
             app:layout_constraintStart_toStartOf="@+id/iv_product_item_preview"
@@ -58,8 +58,8 @@
             android:textSize="15sp"
 
             tools:text = "iPhone 9"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="@dimen/first_screen_10dp"
+            android:paddingEnd="@dimen/first_screen_10dp"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,8 +72,8 @@
             android:layout_height="wrap_content"
 
             tools:text = "Apple"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="@dimen/first_screen_10dp"
+            android:paddingEnd="@dimen/first_screen_10dp"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,8 +86,8 @@
             android:layout_height="wrap_content"
 
             tools:text = "1749$"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="@dimen/first_screen_10dp"
+            android:paddingEnd="@dimen/first_screen_10dp"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

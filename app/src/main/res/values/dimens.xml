@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_sec_screen_8dp">8dp</dimen>
+    <dimen name="first_screen_10dp">10dp</dimen>
+    <dimen name="first_screen_5dp">5dp</dimen>
+    <dimen name="first_screen_text_size_25sp">25sp</dimen>
+    <dimen name="rv_image_height">170dp</dimen>
+    <dimen name="rv_image_width">250dp</dimen>
+    <dimen name="rv_card_elevation">3dp</dimen>
+</resources>

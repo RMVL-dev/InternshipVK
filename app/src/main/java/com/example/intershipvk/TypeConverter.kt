@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken
 
 private val gson by lazy { Gson() }
 
+//Этот конветрер был добавлен для удобной передачи данных между фрагментами через safe args
 
 fun toJson(data:Product):String =
     gson.toJson(data)
